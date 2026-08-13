@@ -402,5 +402,20 @@
 </div>
 
 <script src="js/main.js?v=1"></script>
+<!-- Konverteringssporing: Google Ads + Matomo (tel/mailto-klikk) -->
+<script>
+(function(){
+  function fire(label, action){
+    try { if (typeof gtag === 'function') gtag('event','conversion',{'send_to':'AW-10902964231/'+label}); } catch(e){}
+    try { window._paq = window._paq || []; window._paq.push(['trackEvent','Kontakt',action,document.location.pathname]); } catch(e){}
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="mailto:"]') : null;
+    if (!a) return;
+    if (a.getAttribute('href').indexOf('tel:') === 0) fire('RBV8CJ-CleEcEIeQ-M4o','Telefonklikk');
+    else fire('M48oCKKCleEcEIeQ-M4o','E-postklikk');
+  }, true);
+})();
+</script>
 </body>
 </html>
